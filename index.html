@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500vh;
+        }
+        .box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url(1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            transition: background-image 0.5s;
+        }
+        .box h2 {
+            color: #fff;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Scroll To change Background </h2>
+    </div>
+    <script>
+        let box = document.querySelector('.box');
+        let images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'];
+
+        window.addEventListener('scroll', () => {
+            let scrollPosition = window.scrollY;
+            let documentHeight = document.documentElement.scrollHeight;
+            let viewportHeight = window.innerHeight;
+
+            let imageIndex = Math.floor((scrollPosition / (documentHeight - viewportHeight)) * images.length);
+            box.style.backgroundImage = `url(${images[imageIndex]})`;
+        });
+    </script>
+</body>
+</html>
